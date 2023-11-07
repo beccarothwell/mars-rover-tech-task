@@ -1,7 +1,7 @@
-const DIRECTIONS = ["N", "S", "E", "W"] as const;
-type RoverDirection = (typeof DIRECTIONS)[number];
+export const DIRECTIONS = ["N", "S", "E", "W"] as const;
+export type RoverDirection = (typeof DIRECTIONS)[number];
 
-type Rover = {
+export type Rover = {
   x: number;
   y: number;
   direction: RoverDirection;
