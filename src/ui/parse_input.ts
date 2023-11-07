@@ -1,5 +1,10 @@
 import { PlateauCoordinates } from "../plateau/plateau.types";
-import { DIRECTIONS, Rover, RoverDirection } from "../rover/rover.types";
+import {
+  DIRECTIONS,
+  Rover,
+  RoverDirection,
+  RoverInstruction,
+} from "../rover/rover.types";
 
 export function parsePlateauInput(
   input: string
@@ -17,7 +22,7 @@ export function parsePlateauInput(
   return [x, y];
 }
 
-export function parseRoverInput(input: string): Rover | undefined {
+export function parseRoverInput(input: string): RoverInstruction | undefined {
   if (input.length > 5 || input.charAt(1) !== " " || input.charAt(3) !== " ") {
     return undefined;
   }
@@ -32,7 +37,7 @@ export function parseRoverInput(input: string): Rover | undefined {
     return undefined;
   }
 
-  return { x: x, y: y, direction: direction };
+  return [[x, y], direction];
 }
 
 function isRoverDirection(input: string): input is RoverDirection {
