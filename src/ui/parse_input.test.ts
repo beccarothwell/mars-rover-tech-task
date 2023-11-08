@@ -158,6 +158,21 @@ describe("fractional numbers should be rounded to the nearest integer. Coordinat
   });
 });
 
+describe("direction character is case insensitive", () => {
+  test("returns an array containing an array of two numbers rounded to the nearest integer, and a valid direction character", () => {
+    expect(parseRoverInput("5 5 n")).toEqual([[5, 5], "N"]);
+  });
+  test("returns an array containing an array of two numbers rounded to the nearest integer, and a valid direction character", () => {
+    expect(parseRoverInput("5 5 e")).toEqual([[5, 5], "E"]);
+  });
+  test("returns an array containing an array of two numbers rounded to the nearest integer, and a valid direction character", () => {
+    expect(parseRoverInput("5 5 s")).toEqual([[5, 5], "S"]);
+  });
+  test("returns an array containing an array of two numbers rounded to the nearest integer, and a valid direction character", () => {
+    expect(parseRoverInput("5 5 w")).toEqual([[5, 5], "W"]);
+  });
+});
+
 describe("returns undefined if passed a string with more than one character or any character other than 'L', 'R', or 'M'", () => {
   test("returns undefined if given an empty string", () => {
     expect(parseMovementInput("")).toBe(undefined);
