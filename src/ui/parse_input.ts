@@ -56,11 +56,11 @@ export function parseMovementInput(
 }
 
 function isRoverDirection(input: string): input is RoverDirection {
-  return DIRECTIONS.filter((direction) => direction === input).length > 0;
+  return (DIRECTIONS as ReadonlyArray<string>).includes(input);
 }
 
 function isRoverMovementInstruction(
   input: string
 ): input is RoverMovementInstruction {
-  return INSTRUCTIONS.filter((instruction) => instruction === input).length > 0;
+  return (INSTRUCTIONS as ReadonlyArray<string>).includes(input);
 }
