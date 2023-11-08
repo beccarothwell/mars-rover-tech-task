@@ -194,3 +194,15 @@ describe("returns undefined if passed a string with more than one character or a
     expect(parseRoverInput(input)).toBe(undefined);
   });
 });
+
+describe("returns valid instruction character when passed 'L', 'R', or 'M'", () => {
+  test("returns 'L' when passed 'L'", () => {
+    expect(parseMovementInput("L")).toBe("L");
+  });
+  test("returns 'R' when passed 'R'", () => {
+    expect(parseMovementInput("R")).toBe("R");
+  });
+  test("returns 'M' when passed 'M'", () => {
+    expect(parseMovementInput("M")).toBe("M");
+  });
+});
