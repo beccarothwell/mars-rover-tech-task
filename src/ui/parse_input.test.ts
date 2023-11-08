@@ -34,18 +34,18 @@ describe("returns if passed an invalid string, i.e. a string that is not strictl
   });
   test("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
     const input = "5 5";
-    expect(parsePlateauInput(input)).toBe([5, 5]);
+    expect(parsePlateauInput(input)).toEqual([5, 5]);
   });
   test("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
     const input = "1 2";
-    expect(parsePlateauInput(input)).toBe([1, 2]);
+    expect(parsePlateauInput(input)).toEqual([1, 2]);
   });
   test("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
     const input = "50 50";
-    expect(parsePlateauInput(input)).toBe([50, 50]);
+    expect(parsePlateauInput(input)).toEqual([50, 50]);
   });
   test("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
     const input = "1000 10000";
-    expect(parsePlateauInput(input)).toBe([1000, 10000]);
+    expect(parsePlateauInput(input)).toEqual([1000, 10000]);
   });
 });
