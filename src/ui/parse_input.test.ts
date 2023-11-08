@@ -1,6 +1,6 @@
-import { parsePlateauInput } from "./parse_input";
+import { parsePlateauInput, parseRoverInput } from "./parse_input";
 
-describe("returns if passed an invalid string, i.e. a string that is not strictly formatted 'number number'", () => {
+describe("returns undefined if passed an invalid string, i.e. a string that is not strictly formatted 'number number'", () => {
   test("returns undefined if given an empty string", () => {
     expect(parsePlateauInput("")).toBe(undefined);
   });
@@ -24,12 +24,16 @@ describe("returns if passed an invalid string, i.e. a string that is not strictl
     const input = "1_2";
     expect(parsePlateauInput(input)).toBe(undefined);
   });
-  test("returns undefined if passed two numbers in a string not separated by a space", () => {
+  test("returns undefined if passed two numbers in a string separated by multiple spaces", () => {
     const input = "1     2";
     expect(parsePlateauInput(input)).toBe(undefined);
   });
-  test("returns undefined if passed two numbers in a string not separated by a space", () => {
+  test("returns undefined if passed a string with more than two numbers separated by spaces", () => {
     const input = "1 2 N";
+    expect(parsePlateauInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed a random invalid string", () => {
+    const input = "hey!";
     expect(parsePlateauInput(input)).toBe(undefined);
   });
   test("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
@@ -58,5 +62,75 @@ describe("fractional numbers should be rounded to the nearest integer. Coordinat
   });
   test("returns an array containing two numbers rounded to the nearest integer", () => {
     expect(parsePlateauInput("10.1 50.9")).toEqual([10, 51]);
+  });
+});
+
+describe("returns undefined if passed an invalid string, i.e. a string that is not strictly formatted 'number number N|E|S|W'", () => {
+  test("returns undefined if given an empty string", () => {
+    expect(parseRoverInput("")).toBe(undefined);
+  });
+  test("returns undefined if passed a single number string", () => {
+    const input = "1";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed two numbers in a string not separated by a space", () => {
+    const input = "12";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed a string with only two numbers separated by a space", () => {
+    const input = "1 2";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed two numbers and a valid direction character in a string not separated by spaces", () => {
+    const input = "12N";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed a string of two numbers seperated by a space and a valid direction character not separated by a space", () => {
+    const input = "1 2N";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed a string of two numbers not seperated by a space and a valid direction character separated by a space", () => {
+    const input = "12 N";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed two numbers and a valid direction character in a string not separated by a space", () => {
+    const input = "1-2-N";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed two numbers and a valid direction character in a string not separated by a space", () => {
+    const input = "1,2,N";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed two numbers and a valid direction character in a string not separated by a space", () => {
+    const input = "1_2_N";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed two numbers and a valid direction character in a string separated by multiple spaces", () => {
+    const input = "1     2           N";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed two numbers and an invalid direction character in a string separated by spaces", () => {
+    const input = "1 2 B";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns undefined if passed a random invalid string", () => {
+    const input = "hey!";
+    expect(parseRoverInput(input)).toBe(undefined);
+  });
+  test("returns an array containing two numbers and a valid direction character if passed a valid string of format 'number number N|E|S|W'", () => {
+    const input = "1 2 N";
+    expect(parseRoverInput(input)).toEqual([[1, 2], "N"]);
+  });
+  test("returns an array containing two numbers and a valid direction character if passed a valid string of format 'number number N|E|S|W'", () => {
+    const input = "1 2 E";
+    expect(parseRoverInput(input)).toEqual([[1, 2], "E"]);
+  });
+  test("returns an array containing two numbers and a valid direction character if passed a valid string of format 'number number N|E|S|W'", () => {
+    const input = "50 50 W";
+    expect(parseRoverInput(input)).toEqual([[50, 50], "W"]);
+  });
+  test("returns an array containing two numbers and a valid direction character if passed a valid string of format 'number number N|E|S|W'", () => {
+    const input = "867 9999 S";
+    expect(parseRoverInput(input)).toEqual([[867, 9999], "S"]);
   });
 });
