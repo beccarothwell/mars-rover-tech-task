@@ -1,4 +1,8 @@
-import { parsePlateauInput, parseRoverInput } from "./parse_input";
+import {
+  parseMovementInput,
+  parsePlateauInput,
+  parseRoverInput,
+} from "./parse_input";
 
 describe("returns undefined if passed an invalid string, i.e. a string that is not strictly formatted 'number number'", () => {
   test("returns undefined if given an empty string", () => {
@@ -36,23 +40,27 @@ describe("returns undefined if passed an invalid string, i.e. a string that is n
     const input = "hey!";
     expect(parsePlateauInput(input)).toBe(undefined);
   });
-  test("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
+});
+
+describe("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
+  test("returns an array [5,5] if passed a string '5 5'", () => {
     const input = "5 5";
     expect(parsePlateauInput(input)).toEqual([5, 5]);
   });
-  test("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
+  test("returns an array [1,2] if passed a string '1 2'", () => {
     const input = "1 2";
     expect(parsePlateauInput(input)).toEqual([1, 2]);
   });
-  test("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
+  test("returns an array [50,50] if passed a string '50 50''", () => {
     const input = "50 50";
     expect(parsePlateauInput(input)).toEqual([50, 50]);
   });
-  test("returns an array containing two numbers if passed a valid string of format 'number number'", () => {
+  test("returns an array [1000, 10000] if passed a string '1000 10000'", () => {
     const input = "1000 10000";
     expect(parsePlateauInput(input)).toEqual([1000, 10000]);
   });
 });
+
 describe("fractional numbers should be rounded to the nearest integer. Coordinates can be whole numbers only.", () => {
   test("returns an array containing two numbers rounded to the nearest integer", () => {
     expect(parsePlateauInput("5.5 5.6")).toEqual([6, 6]);
@@ -117,23 +125,27 @@ describe("returns undefined if passed an invalid string, i.e. a string that is n
     const input = "hey!";
     expect(parseRoverInput(input)).toBe(undefined);
   });
-  test("returns an array containing two numbers and a valid direction character if passed a valid string of format 'number number N|E|S|W'", () => {
+});
+
+describe("returns an array containing two numbers and a valid direction character if passed a valid string of format 'number number N|E|S|W'", () => {
+  test("returns an array [[1,2],'N'] if passed a string '1 2 N'", () => {
     const input = "1 2 N";
     expect(parseRoverInput(input)).toEqual([[1, 2], "N"]);
   });
-  test("returns an array containing two numbers and a valid direction character if passed a valid string of format 'number number N|E|S|W'", () => {
+  test("returns an array [[1,2],'E'] if passed a string '1 2 E'", () => {
     const input = "1 2 E";
     expect(parseRoverInput(input)).toEqual([[1, 2], "E"]);
   });
-  test("returns an array containing two numbers and a valid direction character if passed a valid string of format 'number number N|E|S|W'", () => {
+  test("returns an array [[50,50],'W'] if passed a string '50 50 W'", () => {
     const input = "50 50 W";
     expect(parseRoverInput(input)).toEqual([[50, 50], "W"]);
   });
-  test("returns an array containing two numbers and a valid direction character if passed a valid string of format 'number number N|E|S|W'", () => {
+  test("returns an array [[867,999],'S'] if passed a string '867 9999 S'", () => {
     const input = "867 9999 S";
     expect(parseRoverInput(input)).toEqual([[867, 9999], "S"]);
   });
 });
+
 describe("fractional numbers should be rounded to the nearest integer. Coordinates can be whole numbers only.", () => {
   test("returns an array containing an array of two numbers rounded to the nearest integer, and a valid direction character", () => {
     expect(parseRoverInput("5.5 5.6 N")).toEqual([[6, 6], "N"]);
@@ -143,5 +155,27 @@ describe("fractional numbers should be rounded to the nearest integer. Coordinat
   });
   test("returns an array containing an array of two numbers rounded to the nearest integer, and a valid direction character", () => {
     expect(parseRoverInput("10.1 50.9 E")).toEqual([[10, 51], "E"]);
+  });
+});
+
+describe("returns undefined if passed a string with more than one character or any character other than 'L', 'R', or 'M'", () => {
+  test("returns undefined if given an empty string", () => {
+    expect(parseMovementInput("")).toBe(undefined);
+  });
+  test("returns undefined if passed an invalid instruction character", () => {
+    expect(parseMovementInput("w")).toBe(undefined);
+  });
+  test("returns undefined if passed more than one character", () => {
+    expect(parseMovementInput("SFSFASSAFSAFA")).toBe(undefined);
+  });
+  test("returns undefined if passed more than one character - even if they some are valid instruction characters", () => {
+    expect(parseMovementInput("WLK")).toBe(undefined);
+  });
+  test("returns undefined if passed more than one character - even if they are all valid instruction characters", () => {
+    expect(parseMovementInput("LLLLLLL")).toBe(undefined);
+  });
+  test("returns undefined if passed a random invalid string", () => {
+    const input = "hey!";
+    expect(parseRoverInput(input)).toBe(undefined);
   });
 });
