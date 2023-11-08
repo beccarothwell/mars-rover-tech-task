@@ -11,11 +11,14 @@ import {
 export function parsePlateauInput(
   input: string
 ): PlateauCoordinates | undefined {
-  if (input.length > 3 || input.charAt(1) !== " ") {
+  const coordinateValues = input.split(" ");
+
+  if (coordinateValues.length !== 2) {
     return undefined;
   }
-  const x = Number(input.charAt(0));
-  const y = Number(input.charAt(2));
+
+  const x = Number(coordinateValues[0]);
+  const y = Number(coordinateValues[1]);
 
   if (isNaN(x) || isNaN(y)) {
     return undefined;
@@ -28,6 +31,7 @@ export function parseRoverInput(input: string): RoverInstruction | undefined {
   if (input.length > 5 || input.charAt(1) !== " " || input.charAt(3) !== " ") {
     return undefined;
   }
+
   const x = Number(input.charAt(0));
   const y = Number(input.charAt(2));
   const direction = input.charAt(4);
