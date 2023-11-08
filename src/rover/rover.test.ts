@@ -1,4 +1,4 @@
-import { placeRover, moveRover } from "../rover/rover";
+import { placeRover, moveRover, roverStatus } from "../rover/rover";
 import { definePlateau } from "../plateau/plateau";
 import { RoverDirection } from "./rover.types";
 
@@ -148,5 +148,12 @@ describe("rover should not move past the edge of the Plateau", () => {
     }).toThrow(
       "Rover cannot move outside of the Plateau. The maximum y coordinate is 5"
     );
+  });
+});
+describe("return the rover's current coordinates and direction", () => {
+  test("return the rovers x and y coordinates, and direction, as a string", () => {
+    const rover = { x: 1, y: 5, direction: "E" as RoverDirection };
+    const result = "1 5 E";
+    expect(roverStatus(rover)).toBe(result);
   });
 });
