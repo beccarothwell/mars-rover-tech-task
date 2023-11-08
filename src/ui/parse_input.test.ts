@@ -134,3 +134,14 @@ describe("returns undefined if passed an invalid string, i.e. a string that is n
     expect(parseRoverInput(input)).toEqual([[867, 9999], "S"]);
   });
 });
+describe("fractional numbers should be rounded to the nearest integer. Coordinates can be whole numbers only.", () => {
+  test("returns an array containing an array of two numbers rounded to the nearest integer, and a valid direction character", () => {
+    expect(parseRoverInput("5.5 5.6 N")).toEqual([[6, 6], "N"]);
+  });
+  test("returns an array containing an array of two numbers rounded to the nearest integer, and a valid direction character", () => {
+    expect(parseRoverInput("5.2 5.8 W")).toEqual([[5, 6], "W"]);
+  });
+  test("returns an array containing an array of two numbers rounded to the nearest integer, and a valid direction character", () => {
+    expect(parseRoverInput("10.1 50.9 E")).toEqual([[10, 51], "E"]);
+  });
+});
