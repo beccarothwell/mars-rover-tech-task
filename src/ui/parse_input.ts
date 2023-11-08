@@ -34,8 +34,8 @@ export function parseRoverInput(input: string): RoverInstruction | undefined {
     return undefined;
   }
 
-  const x = Number(roverPositionValues[0]);
-  const y = Number(roverPositionValues[1]);
+  const x = Math.round(Number(roverPositionValues[0]));
+  const y = Math.round(Number(roverPositionValues[1]));
   const direction = roverPositionValues[2];
 
   if (isNaN(x) || isNaN(y)) {
