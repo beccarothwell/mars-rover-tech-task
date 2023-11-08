@@ -127,3 +127,7 @@ export function moveRover(plateau: Plateau, rover: Rover, input: string) {
   rover.direction = currentDirection;
   return rover;
 }
+
+export function roverStatus(rover: Rover) {
+  return `${rover.x} ${rover.y} ${rover.direction}`;
+}
