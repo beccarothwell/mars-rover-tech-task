@@ -91,69 +91,69 @@ describe("rover direction should be updated to the next clockwise compass point 
 describe("rover should move one coordinate on the x or y axis based on direction faced", () => {
   const input = "M";
   const plateau = { x: 5, y: 5 };
-  test("rover should move up one coordinate on the x axis if facing N", () => {
+  test("rover should move up one coordinate on the y axis if facing N", () => {
     const rover = { x: 1, y: 2, direction: "N" as RoverDirection };
     const result = moveRover(plateau, rover, input);
-    expect(result).toEqual({ x: 2, y: 2, direction: "N" });
+    expect(result).toEqual({ x: 1, y: 3, direction: "N" });
   });
-  test("rover should move up one coordinate on the y axis if facing E", () => {
+  test("rover should move up one coordinate on the x axis if facing E", () => {
     const rover = { x: 1, y: 2, direction: "E" as RoverDirection };
     const result = moveRover(plateau, rover, input);
-    expect(result).toEqual({ x: 1, y: 3, direction: "E" });
+    expect(result).toEqual({ x: 2, y: 2, direction: "E" });
   });
-  test("rover should move down one coordinate on the x axis if facing S", () => {
+  test("rover should move down one coordinate on the y axis if facing S", () => {
     const rover = { x: 1, y: 2, direction: "S" as RoverDirection };
     const result = moveRover(plateau, rover, input);
-    expect(result).toEqual({ x: 0, y: 2, direction: "S" });
+    expect(result).toEqual({ x: 1, y: 1, direction: "S" });
   });
-  test("rover should move down one coordinate on the y axis if facing W", () => {
+  test("rover should move down one coordinate on the x axis if facing W", () => {
     const rover = { x: 1, y: 2, direction: "W" as RoverDirection };
     const result = moveRover(plateau, rover, input);
-    expect(result).toEqual({ x: 1, y: 1, direction: "W" });
+    expect(result).toEqual({ x: 0, y: 2, direction: "W" });
   });
 });
 
 describe("rover should not move past the edge of the Plateau", () => {
   const input = "M";
   const plateau = { x: 5, y: 5 };
-  test("if facing S at x: 0 rover should not move", () => {
-    const rover = { x: 0, y: 2, direction: "S" as RoverDirection };
-    expect(() => {
-      moveRover(plateau, rover, input);
-    }).toThrow(
-      "Rover cannot move outside of the Plateau. The minimum x coordinate is 0"
-    );
-  });
-  test("if facing W at y: 0 rover should not move", () => {
-    const rover = { x: 1, y: 0, direction: "W" as RoverDirection };
+  test("if facing S at y: 0 rover should not move", () => {
+    const rover = { x: 1, y: 0, direction: "S" as RoverDirection };
     expect(() => {
       moveRover(plateau, rover, input);
     }).toThrow(
       "Rover cannot move outside of the Plateau. The minimum y coordinate is 0"
     );
   });
-  test("if facing N at x: 5, on a Plateau of 5 5, rover should not move", () => {
-    const rover = { x: 5, y: 2, direction: "N" as RoverDirection };
-
+  test("if facing W at x: 0 rover should not move", () => {
+    const rover = { x: 0, y: 2, direction: "W" as RoverDirection };
     expect(() => {
       moveRover(plateau, rover, input);
     }).toThrow(
-      "Rover cannot move outside of the Plateau. The maximum x coordinate is 5"
+      "Rover cannot move outside of the Plateau. The minimum x coordinate is 0"
     );
   });
-  test("if facing E at y: 5, on a Plateau of 5 5, rover should not move", () => {
-    const rover = { x: 1, y: 5, direction: "E" as RoverDirection };
+  test("if facing N at y: 5, on a Plateau of 5 5, rover should not move", () => {
+    const rover = { x: 1, y: 5, direction: "N" as RoverDirection };
+
     expect(() => {
       moveRover(plateau, rover, input);
     }).toThrow(
       "Rover cannot move outside of the Plateau. The maximum y coordinate is 5"
     );
   });
+  test("if facing E at x: 5, on a Plateau of 5 5, rover should not move", () => {
+    const rover = { x: 5, y: 2, direction: "E" as RoverDirection };
+    expect(() => {
+      moveRover(plateau, rover, input);
+    }).toThrow(
+      "Rover cannot move outside of the Plateau. The maximum x coordinate is 5"
+    );
+  });
 });
 describe("return the rover's current coordinates and direction", () => {
   test("return the rovers x and y coordinates, and direction, as a string", () => {
-    const rover = { x: 1, y: 5, direction: "E" as RoverDirection };
-    const result = "1 5 E";
+    const rover = { x: 1, y: 2, direction: "E" as RoverDirection };
+    const result = "1 2 E";
     expect(roverStatus(rover)).toBe(result);
   });
 });

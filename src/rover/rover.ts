@@ -83,15 +83,6 @@ export function moveRover(plateau: Plateau, rover: Rover, input: string) {
     } else if (parseInst === "M") {
       switch (currentDirection) {
         case "N":
-          if (currentXCoordinate === plateau.x) {
-            throw new Error(
-              `Rover cannot move outside of the Plateau. The maximum x coordinate is ${plateau.x}`
-            );
-          } else {
-            currentXCoordinate++;
-          }
-          break;
-        case "E":
           if (currentYCoordinate === plateau.y) {
             throw new Error(
               `Rover cannot move outside of the Plateau. The maximum y coordinate is ${plateau.y}`
@@ -100,22 +91,31 @@ export function moveRover(plateau: Plateau, rover: Rover, input: string) {
             currentYCoordinate++;
           }
           break;
-        case "S":
-          if (currentXCoordinate === 0) {
+        case "E":
+          if (currentXCoordinate === plateau.x) {
             throw new Error(
-              "Rover cannot move outside of the Plateau. The minimum x coordinate is 0"
+              `Rover cannot move outside of the Plateau. The maximum x coordinate is ${plateau.x}`
             );
           } else {
-            currentXCoordinate--;
+            currentXCoordinate++;
           }
           break;
-        case "W":
+        case "S":
           if (currentYCoordinate === 0) {
             throw new Error(
-              `Rover cannot move outside of the Plateau. The minimum y coordinate is 0`
+              "Rover cannot move outside of the Plateau. The minimum y coordinate is 0"
             );
           } else {
             currentYCoordinate--;
+          }
+          break;
+        case "W":
+          if (currentXCoordinate === 0) {
+            throw new Error(
+              `Rover cannot move outside of the Plateau. The minimum x coordinate is 0`
+            );
+          } else {
+            currentXCoordinate--;
           }
           break;
       }
