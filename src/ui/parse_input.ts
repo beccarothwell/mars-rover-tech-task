@@ -17,8 +17,8 @@ export function parsePlateauInput(
     return undefined;
   }
 
-  const x = Number(coordinateValues[0]);
-  const y = Number(coordinateValues[1]);
+  const x = Math.round(Number(coordinateValues[0]));
+  const y = Math.round(Number(coordinateValues[1]));
 
   if (isNaN(x) || isNaN(y)) {
     return undefined;
