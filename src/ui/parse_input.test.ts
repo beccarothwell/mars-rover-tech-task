@@ -49,3 +49,8 @@ describe("returns if passed an invalid string, i.e. a string that is not strictl
     expect(parsePlateauInput(input)).toEqual([1000, 10000]);
   });
 });
+describe("fractional numbers should be rounded to the nearest integer. Coordinates can be whole numbers only.", () => {
+  test("returns an array containing two numbers rounded to the nearest integer", () => {
+    expect(parsePlateauInput("5.5 5.6")).toBe([5, 6]);
+  });
+});
