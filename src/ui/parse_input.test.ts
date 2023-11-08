@@ -53,4 +53,10 @@ describe("fractional numbers should be rounded to the nearest integer. Coordinat
   test("returns an array containing two numbers rounded to the nearest integer", () => {
     expect(parsePlateauInput("5.5 5.6")).toEqual([6, 6]);
   });
+  test("returns an array containing two numbers rounded to the nearest integer", () => {
+    expect(parsePlateauInput("5.2 5.8")).toEqual([5, 6]);
+  });
+  test("returns an array containing two numbers rounded to the nearest integer", () => {
+    expect(parsePlateauInput("10.1 50.9")).toEqual([10, 51]);
+  });
 });
