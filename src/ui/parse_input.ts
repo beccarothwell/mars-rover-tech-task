@@ -28,13 +28,15 @@ export function parsePlateauInput(
 }
 
 export function parseRoverInput(input: string): RoverInstruction | undefined {
-  if (input.length > 5 || input.charAt(1) !== " " || input.charAt(3) !== " ") {
+  const roverPositionValues = input.split(" ");
+
+  if (roverPositionValues.length !== 3) {
     return undefined;
   }
 
-  const x = Number(input.charAt(0));
-  const y = Number(input.charAt(2));
-  const direction = input.charAt(4);
+  const x = Number(roverPositionValues[0]);
+  const y = Number(roverPositionValues[1]);
+  const direction = roverPositionValues[2];
 
   if (isNaN(x) || isNaN(y)) {
     return undefined;
