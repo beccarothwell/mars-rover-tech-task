@@ -118,3 +118,9 @@ describe("rover should move one coordinate on the x or y axis based on direction
     expect(result).toEqual({ x: 1, y: 1, direction: "W" });
   });
 });
+describe("rover should not move past the edge of the Plateau", () => {
+  test("if facing S at x: 0 rover should not move", () => {});
+  test("if facing W at y: 0 rover should not move", () => {});
+  test("if facing N at x: 5, on a Plateau of 5 5, rover should not move", () => {});
+  test("if facing E at y: 5, on a Plateau of 5 5, rover should not move", () => {});
+});
