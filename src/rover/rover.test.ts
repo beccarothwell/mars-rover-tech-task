@@ -16,7 +16,7 @@ describe("placeRover should return an object of type Rover with x and y coordina
 
 describe("rover should not be placed outside of the Plateau", () => {
   const plateau = createPlateau("5 5");
-  test("", () => {
+  test("should throw an error if rover placed further than the maximum x coordinate of the Plateau", () => {
     const roverPlacement = "6 2 N";
     expect(() => {
       createRover(plateau, roverPlacement);
@@ -24,7 +24,7 @@ describe("rover should not be placed outside of the Plateau", () => {
       "Rover cannot be placed outside of the Plateau maximum x coordinate is 5"
     );
   });
-  test("", () => {
+  test("should throw an error if rover placed further than the maximum y coordinate of the Plateau", () => {
     const roverPlacement = "1 6 N";
     expect(() => {
       createRover(plateau, roverPlacement);
@@ -32,12 +32,20 @@ describe("rover should not be placed outside of the Plateau", () => {
       "Rover cannot be placed outside of the Plateau maximum y coordinate is 5"
     );
   });
-  test("", () => {
-    const roverPlacement = "6 6 N";
+  test("should throw an error if rover placed further than the minimum x coordinate of the Plateau", () => {
+    const roverPlacement = "-1 5 N";
     expect(() => {
       createRover(plateau, roverPlacement);
     }).toThrow(
-      "Rover cannot be placed outside of the Plateau maximum x coordinate is 5"
+      "Rover cannot be placed outside of the Plateau minimum x coordinate is 0"
+    );
+  });
+  test("should throw an error if rover placed further than the minimum y coordinate of the Plateau", () => {
+    const roverPlacement = "3 -1 N";
+    expect(() => {
+      createRover(plateau, roverPlacement);
+    }).toThrow(
+      "Rover cannot be placed outside of the Plateau minimum y coordinate is 0"
     );
   });
 });
