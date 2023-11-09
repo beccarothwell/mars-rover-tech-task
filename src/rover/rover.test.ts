@@ -13,6 +13,7 @@ describe("placeRover should return an object of type Rover with x and y coordina
     });
   });
 });
+
 describe("rover should not be placed outside of the Plateau", () => {
   const plateau = createPlateau("5 5");
   test("", () => {
@@ -40,6 +41,7 @@ describe("rover should not be placed outside of the Plateau", () => {
     );
   });
 });
+
 describe("rover direction should be updated to the next anti-clockwise compass point if instructed to turn left", () => {
   const input = "L";
   const plateau = { x: 5, y: 5 };
@@ -64,6 +66,7 @@ describe("rover direction should be updated to the next anti-clockwise compass p
     expect(result).toEqual({ x: 1, y: 2, direction: "N" });
   });
 });
+
 describe("rover direction should be updated to the next clockwise compass point if instructed to turn right", () => {
   const input = "R";
   const plateau = { x: 5, y: 5 };
@@ -88,6 +91,7 @@ describe("rover direction should be updated to the next clockwise compass point 
     expect(result).toEqual({ x: 1, y: 2, direction: "N" });
   });
 });
+
 describe("rover should move one coordinate on the x or y axis based on direction faced", () => {
   const input = "M";
   const plateau = { x: 5, y: 5 };
@@ -150,6 +154,23 @@ describe("rover should not move past the edge of the Plateau", () => {
     );
   });
 });
+
+describe("rover should move multiple spaces and make turns according to a string of instructions", () => {
+  const plateau = { x: 5, y: 5 };
+  test("rover should turn left, move one West, turn left, move one South, turn left, move one East, turn Left, move two North", () => {
+    const rover = { x: 1, y: 2, direction: "N" as RoverDirection };
+    const input = "LMLMLMLMM";
+    const result = moveRover(plateau, rover, input);
+    expect(result).toEqual({ x: 1, y: 3, direction: "N" });
+  });
+  test("rover should move two East, turn right, move two South, turn right, move one West, turn right, turn right, move one East", () => {
+    const rover = { x: 3, y: 3, direction: "E" as RoverDirection };
+    const input = "MMRMMRMRRM";
+    const result = moveRover(plateau, rover, input);
+    expect(result).toEqual({ x: 5, y: 1, direction: "E" });
+  });
+});
+
 describe("return the rover's current coordinates and direction", () => {
   test("return the rovers x and y coordinates, and direction, as a string", () => {
     const rover = { x: 1, y: 2, direction: "E" as RoverDirection };
