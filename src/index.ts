@@ -2,8 +2,10 @@ import { createPlateau } from "./plateau/plateau";
 import { moveRover, createRover, roverStatus } from "./rover/rover";
 
 const plateauInput = "5 5";
+
 const rover1Input = "1 2 N";
 const rover1Instructions = "LMLMLMLMM";
+
 const rover2Input = "3 3 E";
 const rover2Instructions = "MMRMMRMRRM";
 

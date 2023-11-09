@@ -4,8 +4,8 @@ import {
   INSTRUCTIONS,
   Rover,
   RoverDirection,
+  RoverPlacement,
   RoverInstruction,
-  RoverMovementInstruction,
 } from "../rover/rover.types";
 
 export function parsePlateauInput(
@@ -27,7 +27,7 @@ export function parsePlateauInput(
   return [x, y];
 }
 
-export function parseRoverInput(input: string): RoverInstruction | undefined {
+export function parseRoverInput(input: string): RoverPlacement | undefined {
   const roverPositionValues = input.split(" ");
 
   if (roverPositionValues.length !== 3) {
@@ -50,9 +50,9 @@ export function parseRoverInput(input: string): RoverInstruction | undefined {
 
 export function parseMovementInput(
   input: string
-): RoverMovementInstruction | undefined {
+): RoverInstruction | undefined {
   const toUpperCase = input.toUpperCase();
-  if (!isRoverMovementInstruction(toUpperCase)) {
+  if (!isRoverInstruction(toUpperCase)) {
     return undefined;
   }
   return toUpperCase;
@@ -62,8 +62,6 @@ function isRoverDirection(input: string): input is RoverDirection {
   return (DIRECTIONS as ReadonlyArray<string>).includes(input);
 }
 
-function isRoverMovementInstruction(
-  input: string
-): input is RoverMovementInstruction {
+function isRoverInstruction(input: string): input is RoverInstruction {
   return (INSTRUCTIONS as ReadonlyArray<string>).includes(input);
 }

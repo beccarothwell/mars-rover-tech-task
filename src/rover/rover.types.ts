@@ -9,7 +9,7 @@ export type Rover = {
   direction: RoverDirection;
 };
 
-export type RoverInstruction = [PlateauCoordinates, RoverDirection];
+export type RoverPlacement = [PlateauCoordinates, RoverDirection];
 
 export const INSTRUCTIONS = ["L", "R", "M"] as const;
-export type RoverMovementInstruction = (typeof INSTRUCTIONS)[number];
+export type RoverInstruction = (typeof INSTRUCTIONS)[number];
