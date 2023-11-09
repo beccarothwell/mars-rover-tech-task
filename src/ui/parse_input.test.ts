@@ -206,3 +206,15 @@ describe("returns valid instruction character when passed 'L', 'R', or 'M'", () 
     expect(parseMovementInput("M")).toBe("M");
   });
 });
+
+describe("instruction character is case insensitive", () => {
+  test("returns 'L' when passed 'l'", () => {
+    expect(parseMovementInput("l")).toBe("L");
+  });
+  test("returns 'R' when passed 'r'", () => {
+    expect(parseMovementInput("r")).toBe("R");
+  });
+  test("returns 'M' when passed 'm'", () => {
+    expect(parseMovementInput("m")).toBe("M");
+  });
+});
