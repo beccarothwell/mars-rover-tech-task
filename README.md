@@ -67,8 +67,9 @@ My initial feelings were that this task would require OOP to create classes for 
 However I noted that the Mars Rover Additional Info - TypeScript pdf stated:
 
 > "💡 In general, prefer basic objects..."
-> My default, and the style of programming I am most comfortable with, is also functional programming. So, given the above advice, I felt it would be best this time to stick to types and basic objects, rather than getting stuck trying to work with classes.
-> This is something to potentially consider though if the application is updated in future.
+
+My default, and the style of programming I am most comfortable with, is also functional programming. So, given the above advice, I felt it would be best this time to stick to types and basic objects, rather than getting stuck trying to work with classes.
+This is something to potentially consider though if the application is updated in future.
 
 I chose to have `parseMovementInput()` parse individual movement instruction characters, rather than parsing the whole input string, because I wanted to allow the Rover to follow any valid instructions in an input string, then stop at an invalid instruction - whether an invalid input or movement past the boundary of the Plateau. I had hoped to then output the position the Rover had stopped at, and any error messages such as "cannot move past the boundaries of the Plateau" or "invalid movement instruction, instructions must be 'L', 'R', or 'M'.
 
