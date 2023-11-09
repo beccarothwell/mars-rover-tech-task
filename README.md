@@ -135,3 +135,9 @@ In future I would also like to add an function to add a name to each Rover objec
 ### Vehicles other than Rovers
 
 To add future vehicles other than Rovers, assuming they moved in the same way as a Rover about the Plateau, I would likely want to seperate out the placement and movement logic into files for Vehicles, using a type or interface for Vehicles, that is then extended and built on seperately for each type of Vehicle such as Rover or Buggy.
+
+### Drawing the Plateau
+
+My biggest stretch goal, which I was unable to reach was to implement something similar to [this article](https://medium.com/@klope3/drawing-grids-and-data-in-javascript-console-applications-997718454b54) and draw the Plateau grid in the console.
+
+This would then also show the user where the Rover, or Rovers, currently were on the Plateau, as well as possibly revealing other objects on the Plateau to navigate around or towards such as rocks or samples to collect.
