@@ -1,6 +1,7 @@
-# TypeScript project with Tests
+# 👾 🚀 Mars Rover Tech Task 👾 🚀
 
-This repository can be used as a template for creating a TypeScript project using Jest for testing.
+This application creates a Plateau grid, creates a Rover, and moves the Rover around the Plateau grid.
+It outputs the Rover's postion and direction at the end of each set of movement instructions.
 
 ## Requirements
 
