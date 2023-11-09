@@ -1,9 +1,4 @@
-import {
-  Rover,
-  DIRECTIONS,
-  RoverDirection,
-  RoverMovementInstruction,
-} from "./rover.types";
+import { Rover } from "./rover.types";
 import { parseRoverInput, parseMovementInput } from "../ui/parse_input";
 import { Plateau } from "../plateau/plateau.types";
 
@@ -16,23 +11,34 @@ export function createRover(plateau: Plateau, input: string): Rover {
     );
   }
 
-  const roverCoordinates = roverPlacement[0];
+  const roverXCoordinate = roverPlacement[0][0];
+  const roverYCoordinate = roverPlacement[0][1];
   const roverDirection = roverPlacement[1];
 
-  if (roverCoordinates[0] > plateau.x) {
+  if (roverXCoordinate < 0) {
+    throw new Error(
+      `Rover cannot be placed outside of the Plateau minimum x coordinate is 0`
+    );
+  }
+  if (roverYCoordinate < 0) {
+    throw new Error(
+      `Rover cannot be placed outside of the Plateau minimum y coordinate is 0`
+    );
+  }
+  if (roverXCoordinate > plateau.x) {
     throw new Error(
       `Rover cannot be placed outside of the Plateau maximum x coordinate is ${plateau.x}`
     );
   }
-  if (roverCoordinates[1] > plateau.y) {
+  if (roverYCoordinate > plateau.y) {
     throw new Error(
       `Rover cannot be placed outside of the Plateau maximum y coordinate is ${plateau.y}`
     );
   }
 
   return {
-    x: roverCoordinates[0],
-    y: roverCoordinates[1],
+    x: roverXCoordinate,
+    y: roverYCoordinate,
     direction: roverDirection,
   };
 }
@@ -44,13 +50,13 @@ export function moveRover(plateau: Plateau, rover: Rover, input: string) {
   let currentYCoordinate = rover.y;
 
   instructions.forEach((instruction) => {
-    const parseInst = parseMovementInput(instruction);
-    if (parseInst === undefined) {
+    const parsedInstruction = parseMovementInput(instruction);
+    if (parsedInstruction === undefined) {
       throw new Error(
         "Invalid movement instruction. Valid instructions are 'L', 'R', or 'M'"
       );
     }
-    if (parseInst === "L") {
+    if (parsedInstruction === "L") {
       switch (currentDirection) {
         case "N":
           currentDirection = "W";
@@ -65,7 +71,7 @@ export function moveRover(plateau: Plateau, rover: Rover, input: string) {
           currentDirection = "S";
           break;
       }
-    } else if (parseInst === "R") {
+    } else if (parsedInstruction === "R") {
       switch (currentDirection) {
         case "N":
           currentDirection = "E";
@@ -80,7 +86,7 @@ export function moveRover(plateau: Plateau, rover: Rover, input: string) {
           currentDirection = "N";
           break;
       }
-    } else if (parseInst === "M") {
+    } else if (parsedInstruction === "M") {
       switch (currentDirection) {
         case "N":
           if (currentYCoordinate === plateau.y) {
