@@ -51,10 +51,11 @@ export function parseRoverInput(input: string): RoverInstruction | undefined {
 export function parseMovementInput(
   input: string
 ): RoverMovementInstruction | undefined {
-  if (!isRoverMovementInstruction(input)) {
+  const toUpperCase = input.toUpperCase();
+  if (!isRoverMovementInstruction(toUpperCase)) {
     return undefined;
   }
-  return input;
+  return toUpperCase;
 }
 
 function isRoverDirection(input: string): input is RoverDirection {
