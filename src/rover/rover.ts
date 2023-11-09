@@ -7,7 +7,7 @@ import {
 import { parseRoverInput, parseMovementInput } from "../ui/parse_input";
 import { Plateau } from "../plateau/plateau.types";
 
-export function placeRover(plateau: Plateau, input: string): Rover {
+export function createRover(plateau: Plateau, input: string): Rover {
   const roverPlacement = parseRoverInput(input);
 
   if (roverPlacement === undefined) {
